@@ -1,0 +1,26 @@
+express validator : this package is used to validate the user data coming from the frontend 
+
+-> What is express-validator?
+    - express-validator is a tool (library) used in Express.js apps.
+    - Its job is to check if the information a user gives is correct.
+    - Think of it as a gatekeeper: It looks at the user's input and says, "Is this okay to use, or is there something wrong?"
+
+-> Why Do We Need express-validator?
+    When people use your app, they might:
+        - Make mistakes (like entering letters instead of numbers in a phone number).
+        - Try to break your app (hackers might send bad data).
+    To avoid problems:
+        - You use express-validator to make sure their input is safe and correct before using it.
+
+-> How Does express-validator Work?
+    Here’s how it works step-by-step:
+        1. User Inputs Data, The user types data into a form (e.g., name, email, password).
+        2. express-validator Checks, The library checks the data using rules you define:
+            - Is the email valid?
+            - Is the password long enough?
+            - Is the name empty?
+        3. Sends a Response
+            - If the data is fine:
+            - It allows the app to continue.
+        If the data has mistakes:
+            - It sends a message back saying what’s wrong.
