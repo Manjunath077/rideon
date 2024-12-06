@@ -11,7 +11,7 @@ module.exports.registerUser = async(req,res,next)=>{
     }
     // requiring the data coming from the frontend from the req.body 
 
-    console.log(req.body)
+    // console.log(req.body)
     const {fullname:{firstname,lastname},email,password} = req.body
 
     // to check whether the user already exists or not 
@@ -34,7 +34,7 @@ module.exports.registerUser = async(req,res,next)=>{
     // generating the unique token for authentication 
     const token = user.generateAuthToken();
 
-    res.status(200).json({
+    res.status(201).json({
         token,
         error:false,
         message:"User Registered Successfully ",
@@ -81,10 +81,24 @@ module.exports.getUserProfile = async(req,res,next) =>{
 }
 
 module.exports.logoutUser = async(req,res,next)=>{
-    res.clearCookie('token')
-    const token = req.cookies.token || req.headers.authorization.split('')[1];
+    // res.clearCookie('token')
+    // const token = req.cookies.token || req.headers.authorization.split('')[1];
 
-    await blacklistTokenModel.create({token})
+    // await blacklistTokenModel.create({token})
 
-    res.status(200).json({message: 'Logged Out'})
+    // res.status(200).json({message: 'Logged Out'})
+
+    res.clearCookie('token');
+
+    // Extract the token from cookies or Authorization header
+    const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
+
+    if (!token) {
+        return res.status(400).json({ error: true, message: "No token provided" });
+    }
+
+    // Add the token to the blacklist
+    await blacklistTokenModel.create({ token });
+
+    res.status(200).json({ message: "Logged Out" });
 }
