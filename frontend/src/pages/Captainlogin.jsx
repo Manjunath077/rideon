@@ -5,7 +5,7 @@ import axios from 'axios'
 import { CaptainDataContext } from '../context/CaptainContext'
 
 
-function Captainlogin() {
+function CaptainLogin() {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   const [captainData,setCaptainData] = useState({})
@@ -57,4 +57,4 @@ function Captainlogin() {
   )
 }
 
-export default Captainlogin
+export default CaptainLogin
